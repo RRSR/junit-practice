@@ -17,4 +17,12 @@ public class ArrayTest {
     assertArrayEquals(expected, numbers);
   }
 
+  @Test(expected = NullPointerException.class)
+  public void testArraySort_NullArray() {
+    int[] numbers = null;
+    int[] expected = {1, 7, 8, 12, 14};
+    Arrays.sort(numbers);
+    assertArrayEquals(expected, numbers);
+  }
+
 }

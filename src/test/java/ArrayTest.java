@@ -25,4 +25,13 @@ public class ArrayTest {
     assertArrayEquals(expected, numbers);
   }
 
+  @Test(timeout = 50)
+  public void testArraySort_Performance(){
+    int[] numbers = {1,4,3,2,6,8,2};
+    for(int i =0 ; i<1000000; i++){
+      numbers[1]=i;
+      Arrays.sort(numbers);
+    }
+  }
+
 }

@@ -1,0 +1,25 @@
+# Eclipse Project files
+
+.classpath
+.project
+.settings/
+.metadata/
+*.MF
+
+# Intellij Project files
+.idea/
+*.iml
+*.iws
+*.ipr
+*.MF
+
+# Mac
+.DS_Store
+
+# Maven
+target/
+
+
+#Others
+.log
+*.patch

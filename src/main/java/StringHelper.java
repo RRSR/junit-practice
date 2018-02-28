@@ -25,4 +25,8 @@ public class StringHelper {
 		return first2Chars.equals(last2Chars);
 	}
 
+	public boolean getDataFromCloud(StringService stringService, String username ){
+		return stringService.connectToCloudAndGetData(username);
+	}
+
 }

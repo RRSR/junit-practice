@@ -1,7 +1,10 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -9,7 +12,13 @@ import org.junit.Test;
  */
 public class StringHelperTest {
 
-  private StringHelper stringHelper = new StringHelper();
+  private StringHelper stringHelper;
+  private StringService stringService = mock(StringService.class);
+
+  @Before
+  public void setup() {
+    stringHelper = new StringHelper();
+  }
 
   // AACD -> CD
   @Test
@@ -20,19 +29,19 @@ public class StringHelperTest {
   // ACD -> CD
   @Test
   public void truncateAInFirst2Positions_OneAinFirst2Positions() {
-    assertEquals("CD",stringHelper.truncateAInFirst2Positions("ACD"));
+    assertEquals("CD", stringHelper.truncateAInFirst2Positions("ACD"));
   }
 
   // EFCD -> CD
   @Test
   public void truncateAInFirst2Positions_NoAinFirst2Positions() {
-    assertEquals("EFCD",stringHelper.truncateAInFirst2Positions("EFCD"));
+    assertEquals("EFCD", stringHelper.truncateAInFirst2Positions("EFCD"));
   }
 
   // A ->
   @Test
   public void truncateAInFirst2Positions_OneAinFirst1Positions() {
-    assertEquals("",stringHelper.truncateAInFirst2Positions("A"));
+    assertEquals("", stringHelper.truncateAInFirst2Positions("A"));
   }
 
   //ABCD -> false
@@ -70,4 +79,11 @@ public class StringHelperTest {
   public void areFirstAndLastTwoCharactersTheSame_BasicPositiveScenarioOneLetter() {
     assertFalse(stringHelper.areFirstAndLastTwoCharactersTheSame("A"));
   }
+
+  @Test
+  public void getDataFromCloud_BasicPositiveCondition() {
+    when(stringService.connectToCloudAndGetData("Raj")).thenReturn(Boolean.TRUE);
+    assertTrue(stringHelper.getDataFromCloud(stringService, "Raj"));
+  }
+
 }
